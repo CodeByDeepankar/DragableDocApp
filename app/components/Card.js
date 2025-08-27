@@ -7,7 +7,13 @@ import { IoClose } from "react-icons/io5";
 import { motion, scale } from "framer-motion";
 
 function Card({ data, reference }) {
-  console.log(data);
+  const colorMap = {
+    blue: "bg-blue-600",
+    red: "bg-red-600",
+    green: "bg-green-600",
+    yellow: "bg-yellow-600",
+    purple: "bg-purple-600",
+  };
 
   return (
     <motion.div
@@ -38,7 +44,7 @@ function Card({ data, reference }) {
         </div>
 
         {data.tag.isOpen && (
-          <div className={`tag w-full py-4 bg-${data.tag.tagColor}-600 `}>
+          <div className={`tag w-full py-4 ${colorMap[data.tag.tagColor] || "bg-blue-600"}`}>
             <h3 className="w-full text-center font-semibold font-sm">
               {data.tag.tagTitle}
             </h3>
