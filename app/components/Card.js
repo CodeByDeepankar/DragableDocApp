@@ -4,7 +4,7 @@ import React from "react";
 import { FaFileAlt } from "react-icons/fa";
 import { LuDownload } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
-import { motion } from "framer-motion";
+import { motion, scale } from "framer-motion";
 
 function Card({ data, reference }) {
   console.log(data);
@@ -13,8 +13,14 @@ function Card({ data, reference }) {
     <motion.div
       drag
       dragConstraints={reference}
+      whileDrag={{ scale: 1.2 }}
+      dragElastic={0.1}
+      dragTransition={{
+        bounceDamping: 10,
+        bounceStiffness: 100,
+      }}
       className="relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden"
-      whileHover={{ scale: 1.05 }} // optional example animation
+      whileHover={{ scale: 1.05 }}
     >
       <FaFileAlt />
       <p className="text-sm mt-5 font-semibold leading-tight">{data.dec}</p>
@@ -32,7 +38,7 @@ function Card({ data, reference }) {
         </div>
 
         {data.tag.isOpen && (
-          <div className={`tag w-full py-4 bg-${data.tag.tagColor}-600`}>
+          <div className={`tag w-full py-4 bg-${data.tag.tagColor}-600 `}>
             <h3 className="w-full text-center font-semibold font-sm">
               {data.tag.tagTitle}
             </h3>
